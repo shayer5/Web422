@@ -84,10 +84,7 @@ app.delete('/api/listings/:id', (req, res) => {
   });
 });
 
-// Resource not found (this should be at the end)
-app.use((req, res) => {
-  res.status(404).send('Resource not found');
-});
+
 
 db.initialize(process.env.MONGODB_CONN_STRING).then(()=>{
   app.listen(HTTP_PORT, ()=>{
