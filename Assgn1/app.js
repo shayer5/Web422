@@ -10,7 +10,7 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 
-const ListingsDB = require('./models/listingsDB.js');
+const ListingsDB = require('./modules/listingsDB.js');
 const db = new ListingsDB();
 
 const HTTP_PORT = 8080;
@@ -20,6 +20,15 @@ const HTTP_PORT = 8080;
 // mongodb+srv://shayer5:Insignia2@senecaweb.brnjjgm.mongodb.net/sample_airbnb?retryWrites=true&w=majority
 app.use(bodyParser.json());
 
+
+db.initialize(process.env.MONGODB_CONN_STRING).then(()=>{
+  app.listen(HTTP_PORT, ()=>{
+    console.log(`server listening on: ${HTTP_PORT}`);
+  });
+}).catch((err)=>{
+  console.log(err);
+});
+
 // Deliver the app's home page to browser clients 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/index.html'));
@@ -27,7 +36,7 @@ app.get('/', (req, res) => {
 
 // Get all
 app.get('/api/listings', (req, res) => {
-  db.getAllListings({page: req.query.page, perPage: req.query.perPage, name: req.query.name}).then((listings) => {
+  db.getAllListings(req.query.page,req.query.perPage,req.query.name).then((listings) => {
     res.status(200).json(listings);
   }).catch((err) => {
     res.status(500).json({ message: `unable to get listings`, error: err });
@@ -86,10 +95,3 @@ app.delete('/api/listings/:id', (req, res) => {
 
 
 
-db.initialize(process.env.MONGODB_CONN_STRING).then(()=>{
-  app.listen(HTTP_PORT, ()=>{
-    console.log(`server listening on: ${HTTP_PORT}`);
-  });
-}).catch((err)=>{
-  console.log(err);
-});
