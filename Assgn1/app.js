@@ -89,11 +89,6 @@ app.use((req, res) => {
   res.status(404).send('Resource not found');
 });
 
-// Tell the app to start listening for requests
-app.listen(HTTP_PORT, () => {
-  console.log('Ready to handle requests on port ' + HTTP_PORT);
-});
-
 db.initialize(process.env.MONGODB_CONN_STRING).then(()=>{
   app.listen(HTTP_PORT, ()=>{
     console.log(`server listening on: ${HTTP_PORT}`);
