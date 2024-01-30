@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
-const HTTP_PORT = process.env.PORT || 8080;
 const cors = require('cors');
 require('dotenv').config();
 
@@ -14,6 +13,7 @@ app.use(express.json());
 const ListingsDB = require('./models/listingsDB.js');
 const db = new ListingsDB();
 
+const HTTP_PORT = 8080;
 //const mongoose = require('mongoose');
 //let Schema = mongoose.Schema;
 //mongoose.connect('mongodb+srv://shayer5:Insignia2@senecaweb.brnjjgm.mongodb.net/sample_airbnb?retryWrites=true&w=majority')
