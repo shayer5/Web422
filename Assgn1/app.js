@@ -1,3 +1,20 @@
+/*********************************************************************************** 
+* WEB422 – Assignment 1
+*
+* I declare that this assignment is my own work in accordance with Seneca's
+* Academic Integrity Policy:
+*
+* https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
+*
+* Name: _Sukhman Hayer____ Student ID: _143345221____ Date: __1/30/2024_
+*
+* Published URL: _https://lucky-blue-cuttlefish.cyclic.app/api/listings__
+*********************************************************************************/
+
+
+
+
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
