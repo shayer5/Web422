@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 // Get all
 app.get('/api/listings', (req, res) => {
   const { page, perPage, name } = req.query;
-  db.getAllListings(page,perPage, name).then((listings) => {
+  db.getAllListings(page = 1,perPage = 15, name = '').then((listings) => {
     res.status(200).json(listings);
   }).catch((err) => {
     res.status(500).json({ message: `unable to get listings`, error: err });
