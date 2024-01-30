@@ -50,13 +50,11 @@ app.get('/api/listings/:id', (req, res) => {
 
 // Post Route for adding new listing using the addNewListing method and return object with message
 app.post('/api/listings', (req, res) => {
-  app.post('/api/listings', (req, res) => {
     db.addNewListing(req.body).then((newListing) => {
       res.status(201).json(newListing);
     }).catch((err) => {
       res.status(500).json({ message: `unable to add listing due to server error`, error: err });
     });
-  }
 });
 
 // Edit existing
