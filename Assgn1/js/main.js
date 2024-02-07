@@ -1,7 +1,7 @@
 // add variable and functions
 // page (number) - keeps track of which page the user is on (default: 1)
 var page = 1;
-// perPage (number) - the number of results to show per page (default: 10)
+// perPage (number) - the number of results to show per page (default: 10
 var perPage = 10;
 // searchName (string) - keeps track of current search term (default: '')
 var searchName = '';
