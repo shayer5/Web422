@@ -1,55 +1,32 @@
-/*********************************************************************************** 
-* WEB422 – Assignment 1
-*
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-*
-* https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
-*
-* Name: _Sukhman Hayer____ Student ID: _143345221____ Date: __1/30/2024_
-*
-* Published URL: _https://lucky-blue-cuttlefish.cyclic.app/api/listings__
-*********************************************************************************/
-
-
-
-
-
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
+const express = require("express");
 const app = express();
-const cors = require('cors');
-require('dotenv').config();
-
-
-// Add support for incoming JSON entities
-app.use(cors());
-app.use(express.json());
-
-const ListingsDB = require('./modules/listingsDB.js');
+const HTTP_PORT = process.env.PORT || 8080;
+const cors = require("cors");
+const ListingsDB = require("./modules/listingsDB.js");
 const db = new ListingsDB();
+const path = require("path");
+require("dotenv").config();
 
-const HTTP_PORT = 8080;
-//const mongoose = require('mongoose');
-//let Schema = mongoose.Schema;
-//mongoose.connect('mongodb+srv://shayer5:Insignia2@senecaweb.brnjjgm.mongodb.net/sample_airbnb?retryWrites=true&w=majority')
-// mongodb+srv://shayer5:Insignia2@senecaweb.brnjjgm.mongodb.net/sample_airbnb?retryWrites=true&w=majority
-app.use(bodyParser.json());
+db.initialize(process.env.MONGODB_CONN_STRING)
+	.then(() => {
+		app.listen(HTTP_PORT, () => {
+			console.log(`server listening on: ${HTTP_PORT}`);
+		});
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+
+app.use(cors());
+app.use(express.static("public"));
 
 
-db.initialize(process.env.MONGODB_CONN_STRING).then(()=>{
-  app.listen(HTTP_PORT, ()=>{
-    console.log(`server listening on: ${HTTP_PORT}`);
-  });
-}).catch((err)=>{
-  console.log(err);
+
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
-// Deliver the app's home page to browser clients 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
-});
 
 // Get all
 app.get('/api/listings', (req, res) => {
@@ -110,6 +87,3 @@ app.delete('/api/listings/:id', (req, res) => {
     res.status(500).json({ message: `unable to delete listing`, error: err });
   });
 });
-
-
-

@@ -14,49 +14,35 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"crossorigin="anonymous"></script>
         <!-- main.js-->
         <script src="/js/main.js"></script>
-    <title>Document</title>
+    <title>AirBNB Listings Assignment 2</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<!-- Navbar with the title on the left and a search bar on the right with a search and clear button-->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f3b0b3;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Navbar BNB</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="justify-content-end" id ="navbarSupportedContent">
+          <a class="navbar-brand" href="#">AirBNB Listings</a>
+            <div class="justify-content-end" id ="navbarContent">
              <form class ="d-flex" id ="searchForm">
-                <input class="form-control me-2" type="search" placeholder="Listing Name" id="name" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                <button class="btn btn-outline-success" type="Clear" id = "clearForm">Clear</button>
+                <input class="form-control me-4" type="search" placeholder="Listing Name" id="name" aria-label="Search">
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end"> 
+                <button class="btn btn-outline-success" type="submit" style="background-color: rgb(96, 202, 105);">Search</button>
+                <button class="btn btn-outline-success" type="Clear" id = "clearForm" style="background-color: rgb(228, 88, 88);">Clear</button>
+				</div>
              </form> 
             </div>
-          </div>
         </div>
     </nav>
-
+	<!-- Table for the api listings -->
     <div class ="container">
         <div class = "row">
             <div class = "col">
-                <!-- 
-
-                The main interface that users will interact with to view data in our application is a HTML table consisting of 4columns: Name, Type, Location and Summary. Create this table within your "col" <div> according to thefollowing specification:
-                    - The <table> element should (at a minimum) have the classes "table" and a unique id, ie: "listingsTable",since we will be accessing it programmatically from JavaScript
-                    - The <thead> element should contain one row
-                    - The single header row should have 4 table heading elements with the text:
-                        Name
-                        Type
-                        Location
-                        Summary
-                    - The <tbody> element should be empty
-                 -->
                 <table class="table" id="listingsTable">
                     <thead>
                         <tr>
-                            <th>Name</th>   <!-- scope = "col" -->
-                            <th>Type</th>
-                            <th>Location</th>
-                            <th>Summary</th>
+                            <th scope="col">Name</th>  
+                            <th scope="col">Type</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Summary</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,7 +55,7 @@
                           <span aria-hidden="true">&laquo;</span>
                         </a>
                       </li>
-                      <li class="page-item"><a class="page-link" id ="current-page" href="#"></a></li> <!-- removed 1 adding later-->
+                      <li class="page-item"><a class="page-link" id ="current-page" href="#"></a></li>
                       <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next" id ="next-page">
                           <span aria-hidden="true">&raquo;</span>
@@ -81,17 +67,15 @@
             </div>
         </div>
     </div>
-
+	<!-- Modal of the clicked listing -->
     <div class="modal fade" tabindex="-1" id="detailsModal">
         <div class="modal-dialog"> 
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title"></h5> <!-- removed Title Modal title-->
+              <h5 class="modal-title"></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              <p></p>  <!-- removed body text-->
-            </div>
+            <div class="modal-body"></div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
